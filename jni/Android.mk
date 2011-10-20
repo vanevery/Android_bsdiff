@@ -16,9 +16,14 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
+TARGET_ARCH := arm
+TARGET_PLATFORM := android-7
+TARGET_ARCH_ABI := armeabi
+TARGET_ABI := android-7-armeabi
+
 # measurements show that the ARM version of ZLib is about x1.17 faster
 # than the thumb one...
-LOCAL_ARM_MODE := arm
+#LOCAL_ARM_MODE := arm
 
 bzlib_files := \
 	blocksort.c \
@@ -32,8 +37,7 @@ bzlib_files := \
 
 LOCAL_SRC_FILES := $(bzlib_files)
 LOCAL_MODULE := bspatch
-LOCAL_CFLAGS += -O3 -DUSE_MMAP
+#LOCAL_CFLAGS += -O3 -DUSE_MMAP
+LOCAL_LDLIBS := -llog
+
 include $(BUILD_EXECUTABLE)
-
-
-
